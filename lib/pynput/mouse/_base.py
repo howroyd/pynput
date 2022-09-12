@@ -107,7 +107,8 @@ class Controller(object):
         :raises ValueError: if the values are invalid, for example out of
             bounds
         """
-        self.position = tuple(sum(i) for i in zip(self.position, (dx, dy)))
+        self._position_relative_set(dx, dy)
+        #self.position = tuple(sum(i) for i in zip(self.position, (dx, dy)))
 
     def click(self, button, count=1):
         """Emits a button click event at the current position.
@@ -151,6 +152,9 @@ class Controller(object):
 
         This is a platform dependent implementation.
         """
+        raise NotImplementedError()
+
+    def _position_relative_set(self, x, y):
         raise NotImplementedError()
 
     def _scroll(self, dx, dy):
